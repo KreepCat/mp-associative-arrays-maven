@@ -80,7 +80,7 @@ public class AssociativeArray<K, V> {
   public String toString() {
     String returnVal = "{";
     for (int i = 0; i < this.size(); i++) {
-      returnVal.concat(this.pairs[i].key.toString() + ":" + this.pairs[i].val.toString());
+      returnVal.concat(this.pairs[i].toString());
     } // for
     returnVal.concat("}");
     return returnVal;
@@ -121,7 +121,9 @@ public class AssociativeArray<K, V> {
    * @throws KeyNotFoundException when the key is null or does not appear in the associative array.
    */
   public V get(K key) throws KeyNotFoundException {
-    return null; // STUB
+    if (key == null) {
+      throw KeyNotFoundException;
+    }
   } // get(K)
 
   /**
