@@ -78,12 +78,13 @@ public class AssociativeArray<K, V> {
    * @return a string of the form "{Key0:Value0, Key1:Value1, ... KeyN:ValueN}"
    */
   public String toString() {
-    String returnVal = "{";
-    for (int i = 0; i < this.size(); i++) {
-      returnVal.concat(this.pairs[i].toString());
+    String val = "{";
+    for (int i = 0; i < this.size() - 1; i++) {
+      val = val.concat(this.pairs[i].toString() + ", ");
     } // for
-    returnVal.concat("}");
-    return returnVal;
+    val = val.concat(this.pairs[this.size - 1].toString());
+    val = val.concat("}");
+    return val;
   } // toString()
 
   // +----------------+----------------------------------------------
@@ -99,6 +100,9 @@ public class AssociativeArray<K, V> {
    * @throws NullKeyException If the client provides a null key.
    */
   public void set(K key, V value) throws NullKeyException {
+    if (key == null) {
+      throw new NullKeyException();
+    } // if
     for (int i = 0; i < this.size(); i++) {
       if ((this.pairs[i].key).equals(key)) {
         this.pairs[i].val = value;
@@ -107,10 +111,10 @@ public class AssociativeArray<K, V> {
     } // for
     if (this.size % DEFAULT_CAPACITY == 0) {
       this.expand();
-    } // if 
-    this.pairs[size] = new KVPair<K,V>(key, value);
+    } // if
+    this.pairs[size] = new KVPair<K, V>(key, value);
     this.size++;
-    
+
   } // set(K,V)
 
   /**
