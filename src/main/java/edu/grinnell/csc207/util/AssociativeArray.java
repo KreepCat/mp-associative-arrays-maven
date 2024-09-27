@@ -66,8 +66,8 @@ public class AssociativeArray<K, V> {
         cloned.set(this.pairs[i].key, this.pairs[i].val);
       } catch (NullKeyException e) {
         System.err.println("Couldn't add element: " + i);
-      }
-    }
+      } // try/catch
+    } // for
     return cloned;
 
   } // clone()
@@ -80,8 +80,9 @@ public class AssociativeArray<K, V> {
   public String toString() {
     String returnVal = "{";
     for (int i = 0; i < this.size(); i++) {
-      
-    }
+      returnVal.concat(this.pairs[i].key.toString() + ":" + this.pairs[i].val.toString());
+    } // for
+    returnVal.concat("}");
     return returnVal;
   } // toString()
 
