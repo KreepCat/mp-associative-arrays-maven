@@ -105,7 +105,7 @@ public class AssociativeArray<K, V> {
         return;
       } // if
     } // for
-    if (this.size%DEFAULT_CAPACITY == 0) {
+    if (this.size % DEFAULT_CAPACITY == 0) {
       this.expand();
     } // if
     this.pairs[this.size].key = key;
@@ -122,15 +122,29 @@ public class AssociativeArray<K, V> {
    */
   public V get(K key) throws KeyNotFoundException {
     if (key == null) {
-      throw KeyNotFoundException;
-    }
+      throw new KeyNotFoundException();
+    } // if
+    for (int i = 0; i < this.size; i++) {
+      if ((this.pairs[i].key).equals(key)) {
+        return this.pairs[i].val;
+      } // if
+    } // for
+    throw new KeyNotFoundException();
   } // get(K)
 
   /**
    * Determine if key appears in the associative array. Should return false for the null key.
    */
   public boolean hasKey(K key) {
-    return false; // STUB
+    if(key == null) {
+      return false;
+    }
+    for (int i = 0; i < this.size; i++) {
+      if ((this.pairs[i].key).equals(key)) {
+        return true;
+      } // if
+    } // for
+    return false;
   } // hasKey(K)
 
   /**
