@@ -105,6 +105,9 @@ public class AssociativeArray<K, V> {
         return;
       } // if
     } // for
+    if (this.size%DEFAULT_CAPACITY == 0) {
+      this.expand();
+    } // if
     this.pairs[this.size].key = key;
     this.pairs[this.size].val = value;
     this.size++;
