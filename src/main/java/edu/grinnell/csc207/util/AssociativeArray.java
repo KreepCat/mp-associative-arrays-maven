@@ -94,8 +94,8 @@ public class AssociativeArray<K, V> {
   /**
    * Set the value associated with key to value. Future calls to get(key) will return value.
    *
-   * @param K The key whose value we are seeting.
-   * @param V The value of that key.
+   * @param key The key whose value we are seeting.
+   * @param value The value of that key.
    *
    * @throws NullKeyException If the client provides a null key.
    */
@@ -114,7 +114,6 @@ public class AssociativeArray<K, V> {
     } // if
     this.pairs[size] = new KVPair<K, V>(key, value);
     this.size++;
-
   } // set(K,V)
 
   /**
@@ -123,6 +122,7 @@ public class AssociativeArray<K, V> {
    * @param key A key
    *
    * @throws KeyNotFoundException when the key is null or does not appear in the associative array.
+   * @return returns the value at the key if it exists.
    */
   public V get(K key) throws KeyNotFoundException {
     if (key == null) {
@@ -137,6 +137,8 @@ public class AssociativeArray<K, V> {
 
   /**
    * Determine if key appears in the associative array. Should return false for the null key.
+   * @param key the key to find.
+   * @return returns true if the value is in, false if it isn't.
    */
   public boolean hasKey(K key) {
     if (key == null) {
@@ -153,6 +155,7 @@ public class AssociativeArray<K, V> {
   /**
    * Remove the key/value pair associated with a key. Future calls to get(key) will throw an
    * exception. If the key does not appear in the associative array, does nothing.
+   * @param key the key to remove the pair at.
    */
   public void remove(K key) {
     int index = -1;
@@ -167,6 +170,7 @@ public class AssociativeArray<K, V> {
 
   /**
    * Determine how many key/value pairs are in the associative array.
+   * @return the size of the array.
    */
   public int size() {
     return this.size;
@@ -190,13 +194,14 @@ public class AssociativeArray<K, V> {
    * @param key The key of the entry.
    *
    * @throws KeyNotFoundException If the key does not appear in the associative array.
+   * @return the index of the key
    */
   int find(K key) throws KeyNotFoundException {
     for (int i = 0; i < this.size; i++) {
       if (this.pairs[i].key.equals(key)) {
         return i;
-      }
-    }
+      } // if
+    } // for
     throw new KeyNotFoundException();
   } // find(K)
 
