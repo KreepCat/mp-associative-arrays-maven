@@ -136,7 +136,7 @@ public class AssociativeArray<K, V> {
    * Determine if key appears in the associative array. Should return false for the null key.
    */
   public boolean hasKey(K key) {
-    if(key == null) {
+    if (key == null) {
       return false;
     }
     for (int i = 0; i < this.size; i++) {
@@ -152,7 +152,18 @@ public class AssociativeArray<K, V> {
    * exception. If the key does not appear in the associative array, does nothing.
    */
   public void remove(K key) {
-    // STUB
+    int index = -1;
+    for (int i = 0; i < this.size; i++) {
+      if (this.pairs[i].key.equals(key)) {
+        index = i;
+        break;
+      } // if
+    } // for
+    if (index == -1) {
+      return;
+    } // if
+    this.pairs[index] = this.pairs[this.size - 1];
+    this.size--;
   } // remove(K)
 
   /**
