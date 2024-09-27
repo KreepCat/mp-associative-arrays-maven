@@ -124,12 +124,11 @@ public class AssociativeArray<K, V> {
     if (key == null) {
       throw new KeyNotFoundException();
     } // if
-    for (int i = 0; i < this.size; i++) {
-      if ((this.pairs[i].key).equals(key)) {
-        return this.pairs[i].val;
-      } // if
-    } // for
-    throw new KeyNotFoundException();
+    try {
+      return this.pairs[find(key)].val;
+    } catch (KeyNotFoundException e) {
+      throw new KeyNotFoundException();
+    } // try/catch
   } // get(K)
 
   /**
@@ -138,13 +137,13 @@ public class AssociativeArray<K, V> {
   public boolean hasKey(K key) {
     if (key == null) {
       return false;
-    }
-    for (int i = 0; i < this.size; i++) {
-      if ((this.pairs[i].key).equals(key)) {
-        return true;
-      } // if
-    } // for
-    return false;
+    } // if
+    try {
+      find(key);
+      return true;
+    } catch (KeyNotFoundException e) {
+      return false;
+    } // try/catch
   } // hasKey(K)
 
   /**
@@ -153,15 +152,11 @@ public class AssociativeArray<K, V> {
    */
   public void remove(K key) {
     int index = -1;
-    for (int i = 0; i < this.size; i++) {
-      if (this.pairs[i].key.equals(key)) {
-        index = i;
-        break;
-      } // if
-    } // for
-    if (index == -1) {
+    try {
+      index = find(key);
+    } catch (KeyNotFoundException e) {
       return;
-    } // if
+    } // try/catch
     this.pairs[index] = this.pairs[this.size - 1];
     this.size--;
   } // remove(K)
@@ -193,7 +188,12 @@ public class AssociativeArray<K, V> {
    * @throws KeyNotFoundException If the key does not appear in the associative array.
    */
   int find(K key) throws KeyNotFoundException {
-    throw new KeyNotFoundException(); // STUB
+    for (int i = 0; i < this.size; i++) {
+      if (this.pairs[i].key.equals(key)) {
+        return i;
+      }
+    }
+    throw new KeyNotFoundException();
   } // find(K)
 
 } // class AssociativeArray
