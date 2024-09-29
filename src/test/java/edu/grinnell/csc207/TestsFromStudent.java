@@ -23,10 +23,15 @@ public class TestsFromStudent {
    * A simple test.
    */
   @Test
-  public void alwaysPass() throws Exception {
-  } // alwaysPass()
+  public void alwaysPass() throws Exception {} // alwaysPass()
 
-    /**
+  /**
+   * Can we add an element, check that it's there, remove it and then check for it again.
+   * 
+   * @throws NullKeyException
+   * @throws KeyNotFoundException
+   */
+  /**
    * Can we add an element, check that it's there, remove it and then check for it again.
    * 
    * @throws NullKeyException
@@ -36,10 +41,10 @@ public class TestsFromStudent {
   public void pollockAlexTest1() throws NullKeyException, KeyNotFoundException {
     AssociativeArray<Integer, String> testArray = new AssociativeArray<Integer, String>();
     testArray.set(1, "Hello");
-    assertEquals(true, testArray.hasKey(1));
-    assertEquals("Hello", testArray.get(1));
+    assertEquals(true, testArray.hasKey(1), "Does the key '1' exist?");
+    assertEquals("Hello", testArray.get(1), "What is at the key '1'?");
     testArray.remove(1);
-    assertEquals(false, testArray.hasKey(1));
+    assertEquals(false, testArray.hasKey(1), "The key should no longer exist.");
     try {
       testArray.get(1);
       System.err.println("This key shouldn't exist.");
@@ -59,10 +64,11 @@ public class TestsFromStudent {
   public void pollockAlexTest2() throws NullKeyException, KeyNotFoundException {
     AssociativeArray<String, String> testArray2 = new AssociativeArray<String, String>();
     testArray2.remove("Hello");
-    assertEquals(0, testArray2.size());
+    assertEquals(0, testArray2.size(), "There should be nothing in the array.");
     testArray2.set("Hello", "World");
     testArray2.set("Hello", "Samuel");
-    assertEquals("Samuel", testArray2.get("Hello"));
+    assertEquals("Samuel", testArray2.get("Hello"),
+        "Test to see if 'set' can change the value of pairs.");
     assertEquals(1, testArray2.size());
     testArray2.remove("Hello");
     assertEquals(0, testArray2.size());
@@ -87,7 +93,7 @@ public class TestsFromStudent {
     edgeArray1.remove("Edge");
     try {
       edgeArray1.get("Edge");
-      System.err.println("Error: Failed pollockAlexEdge1 ;)");
+      System.err.println("Error: Failed pollockAlexEdge1");
     } catch (KeyNotFoundException e) {
       // Supposed to happen
     } // try/catch
