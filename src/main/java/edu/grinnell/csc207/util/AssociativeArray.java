@@ -63,7 +63,7 @@ public class AssociativeArray<K, V> {
     AssociativeArray<K, V> cloned = new AssociativeArray<K, V>();
     for (int i = 0; i < this.size; i++) {
       try {
-        cloned.set(this.pairs[i].key, this.pairs[i].val);
+        cloned.set(this.pairs[i].clone().key, this.pairs[i].clone().val);
       } catch (NullKeyException e) {
         System.err.println("Couldn't add element: " + i);
       } // try/catch
@@ -80,9 +80,17 @@ public class AssociativeArray<K, V> {
   public String toString() {
     String val = "{";
     for (int i = 0; i < this.size() - 1; i++) {
-      val = val.concat(this.pairs[i].toString() + ", ");
+      if (this.pairs[i].val == null) {
+        val = val.concat(this.pairs[i].key + ":NULL, ");
+      } else {
+        val = val.concat(this.pairs[i].toString() + ", ");
+      } // if/else
     } // for
-    val = val.concat(this.pairs[this.size - 1].toString());
+    if (this.pairs[this.size - 1].val == null) {
+      val = val.concat(this.pairs[this.size - 1].key.toString() + "NULL");
+    } else {
+      val = val.concat(this.pairs[this.size - 1].toString());
+    } // if/else
     val = val.concat("}");
     return val;
   } // toString()
@@ -109,7 +117,7 @@ public class AssociativeArray<K, V> {
         return;
       } // if
     } // for
-    if (this.size % DEFAULT_CAPACITY == 0) {
+    if (this.size == pairs.length) {
       this.expand();
     } // if
     this.pairs[size] = new KVPair<K, V>(key, value);
@@ -137,6 +145,7 @@ public class AssociativeArray<K, V> {
 
   /**
    * Determine if key appears in the associative array. Should return false for the null key.
+   * 
    * @param key the key to find.
    * @return returns true if the value is in, false if it isn't.
    */
@@ -155,6 +164,7 @@ public class AssociativeArray<K, V> {
   /**
    * Remove the key/value pair associated with a key. Future calls to get(key) will throw an
    * exception. If the key does not appear in the associative array, does nothing.
+   * 
    * @param key the key to remove the pair at.
    */
   public void remove(K key) {
@@ -170,6 +180,7 @@ public class AssociativeArray<K, V> {
 
   /**
    * Determine how many key/value pairs are in the associative array.
+   * 
    * @return the size of the array.
    */
   public int size() {
