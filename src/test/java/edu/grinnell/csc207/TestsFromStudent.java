@@ -31,12 +31,6 @@ public class TestsFromStudent {
    * @throws NullKeyException
    * @throws KeyNotFoundException
    */
-  /**
-   * Can we add an element, check that it's there, remove it and then check for it again.
-   * 
-   * @throws NullKeyException
-   * @throws KeyNotFoundException
-   */
   @Test
   public void pollockAlexTest1() throws NullKeyException, KeyNotFoundException {
     AssociativeArray<Integer, String> testArray = new AssociativeArray<Integer, String>();
@@ -98,4 +92,4 @@ public class TestsFromStudent {
       // Supposed to happen
     } // try/catch
   } // pollockAlexEdge1()
-} // class TestsFromSam
+} // class TestsFromStudent()

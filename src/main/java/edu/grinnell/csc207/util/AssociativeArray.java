@@ -34,7 +34,7 @@ public class AssociativeArray<K, V> {
   /**
    * The array of key/value pairs.
    */
-  KVPair<K, V> pairs[];
+  KVPair<K, V> pairs[]; // There is a checkstyle error here. I didn't write this line.
 
   // +--------------+------------------------------------------------
   // | Constructors |
@@ -145,7 +145,7 @@ public class AssociativeArray<K, V> {
 
   /**
    * Determine if key appears in the associative array. Should return false for the null key.
-   * 
+   *
    * @param key the key to find.
    * @return returns true if the value is in, false if it isn't.
    */
@@ -164,7 +164,7 @@ public class AssociativeArray<K, V> {
   /**
    * Remove the key/value pair associated with a key. Future calls to get(key) will throw an
    * exception. If the key does not appear in the associative array, does nothing.
-   * 
+   *
    * @param key the key to remove the pair at.
    */
   public void remove(K key) {
@@ -180,7 +180,7 @@ public class AssociativeArray<K, V> {
 
   /**
    * Determine how many key/value pairs are in the associative array.
-   * 
+   *
    * @return the size of the array.
    */
   public int size() {
