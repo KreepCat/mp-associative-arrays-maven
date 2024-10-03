@@ -80,7 +80,7 @@ public class AssociativeArray<K, V> {
   public String toString() {
     String val = "{";
     for (int i = 0; i < this.size() - 1; i++) {
-        val = val.concat(this.pairs[i].toString() + ", ");
+      val = val.concat(this.pairs[i].toString() + ", ");
     } // for
     if (this.pairs[this.size - 1].val == null) {
       val = val.concat(this.pairs[this.size - 1].key.toString() + "NULL");
@@ -98,10 +98,8 @@ public class AssociativeArray<K, V> {
   /**
    * Set the value associated with key to value. Future calls to get(key) will return value.
    *
-   * @param key
-   *   The key whose value we are seeting.
-   * @param value
-   *   The value of that key.
+   * @param key The key whose value we are seeting.
+   * @param value The value of that key.
    *
    * @throws NullKeyException If the client provides a null key.
    */
@@ -127,11 +125,9 @@ public class AssociativeArray<K, V> {
    *
    * @param key A key
    *
-   * @return
-   *   The corresponding value
+   * @return The corresponding value
    *
-   * @throws KeyNotFoundException
-   *   when the key is null or does not appear in the associative array.
+   * @throws KeyNotFoundException when the key is null or does not appear in the associative array.
    */
   public V get(K key) throws KeyNotFoundException {
     if (key == null) {
@@ -145,11 +141,10 @@ public class AssociativeArray<K, V> {
   } // get(K)
 
   /**
-   * Determine if key appears in the associative array. Should
-   * return false for the null key, since it cannot appear.
+   * Determine if key appears in the associative array. Should return false for the null key, since
+   * it cannot appear.
    *
-   * @param key
-   *   The key we're looking for.
+   * @param key The key we're looking for.
    *
    * @return true if the key appears and false otherwise.
    */
@@ -166,12 +161,10 @@ public class AssociativeArray<K, V> {
   } // hasKey(K)
 
   /**
-   * Remove the key/value pair associated with a key. Future calls
-   * to get(key) will throw an exception. If the key does not appear
-   * in the associative array, does nothing.
+   * Remove the key/value pair associated with a key. Future calls to get(key) will throw an
+   * exception. If the key does not appear in the associative array, does nothing.
    *
-   * @param key
-   *   The key to remove.
+   * @param key The key to remove.
    */
   public void remove(K key) {
     int index = -1;
@@ -210,11 +203,9 @@ public class AssociativeArray<K, V> {
    *
    * @param key The key of the entry.
    *
-   * @return
-   *   The index of the key, if found.
+   * @return The index of the key, if found.
    *
-   * @throws KeyNotFoundException
-   *   If the key does not appear in the associative array.
+   * @throws KeyNotFoundException If the key does not appear in the associative array.
    */
   int find(K key) throws KeyNotFoundException {
     for (int i = 0; i < this.size; i++) {
